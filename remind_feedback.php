@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 //Select reporter(25),updater(40), developers(55), manager(70), and administrators(90)
-$sql = "SELECT * FROM mantis_user_table WHERE aaccess_level='25' OR caccess_level='40' OR cess_level='55' OR access_level='70' OR access_level='90'";
+$sql = "SELECT * FROM mantis_user_table WHERE access_level='25' OR access_level='40' OR access_level='55' OR access_level='70' OR access_level='90'";
 
 $result = $conn->query($sql);
 $result_bugs;
