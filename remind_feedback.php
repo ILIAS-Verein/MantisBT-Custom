@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 
 
-        $sql = "SELECT * FROM mantis_bug_table WHERE handler_id='". $row["id"] . "' AND status='20' AND last_updated>'" . $start_date . "' AND last_updated<'". $twentyonedaysago . "' AND status !='80' AND status != '90'";
+        $sql = "SELECT * FROM mantis_bug_table WHERE handler_id='". $row["id"] . "' AND status='20' AND last_updated>'" . $start_date . "' AND last_updated<'". $twentyonedaysago . "'";
 
        if ($conn->connect_error) {
             die("Connection failed: " . $conn2->connect_error);
