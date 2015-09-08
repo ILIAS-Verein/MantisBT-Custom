@@ -14,8 +14,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//Select developers(55), manager(70), and administrators(90)
-$sql = "SELECT * FROM mantis_user_table WHERE access_level='55' OR access_level='70' OR access_level='90'";
+//Select reporter(25),updater(40), developers(55), manager(70), and administrators(90)
+$sql = "SELECT * FROM mantis_user_table WHERE aaccess_level='25' OR caccess_level='40' OR cess_level='55' OR access_level='70' OR access_level='90'";
 
 $result = $conn->query($sql);
 $result_bugs;
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 
 
-        $sql = "SELECT * FROM mantis_bug_table WHERE handler_id='". $row["id"] . "' AND status='20' AND last_updated>'" . $start_date . "' AND last_updated<'". $twentyonedaysago . "'";
+        $sql = "SELECT * FROM mantis_bug_table WHERE reporter_id='". $row["id"] . "' AND status='20' AND last_updated>'" . $start_date . "' AND last_updated<'". $twentyonedaysago . "'";
 
        if ($conn->connect_error) {
             die("Connection failed: " . $conn2->connect_error);
