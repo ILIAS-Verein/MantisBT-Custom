@@ -1,6 +1,6 @@
 <?php
 
-$start_date = strtotime("31 July 2015");
+$start_date = strtotime("15 August 2015");
 $twentyonedays = 21 * 24 * 60 * 60;
 $url = "www.ilias.de/mantis/view.php?id=";
 
