@@ -1,6 +1,6 @@
 <?php
 
-include("config_db.php");
+include("/etc/mantis/config_db.php");
 include("message_values.php");
 
 $datenow = getdate();
