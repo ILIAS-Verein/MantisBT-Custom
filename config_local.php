@@ -28,11 +28,10 @@
         $g_status_enum_workflow[FEEDBACK]       ='10:open,90:closed';
         $g_status_enum_workflow[POSTPONED]   ='35:funding needed,60:fixing acc to prio,80:resolved';
         $g_status_enum_workflow[FUNDING_NEEDED]      ='60:fixing acc to prio,80:resolved';
-        $g_status_enum_workflow[ASSIGNED] = '25:postponed,35:funding needed,60:fixing acc to prio,80:resolved,90:closed';
+        $g_status_enum_workflow[ASSIGNED] = '15:unassigned,20:feedback,25:postponed,35:funding needed,60:fixing acc to prio,80:resolved,90:closed';
         $g_status_enum_workflow[FIXING_ACC_TO_PRIO]       ='35:funding needed,60:fixing acc to prio,80:resolved';
-        $g_status_enum_workflow[RESOLVED]       ='20:feedback';
+        $g_status_enum_workflow[RESOLVED]       ='20:feedback,90:closed';
         $g_status_enum_workflow[CLOSED]         ='20:feedback';
-
 
 
 ?>
