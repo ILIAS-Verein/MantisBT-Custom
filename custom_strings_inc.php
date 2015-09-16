@@ -31,7 +31,7 @@ switch( $g_active_language ) {
                 $s_email_notification_title_for_status_bug_postponed = 'The following issue is Postponed.';
 
 		$s_funding_needed_bug_title = 'Mark issue Funding needed';
-                $s_funding_needed_bug_button = 'Fudning needed';
+                $s_funding_needed_bug_button = 'Funding needed';
 
                 $s_email_notification_title_for_status_bug_funding_needed = 'The following issue needs funding.';
 		
