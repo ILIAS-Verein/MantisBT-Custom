@@ -18,5 +18,6 @@
 	define ( 'FIXING_ACC_TO_PRIO', 60);
         define ( 'RESOLVED', 80 );
         define ( 'CLOSED', 90);
+	define( 'VEREINSMITGLIED', 40 );
 
 ?>

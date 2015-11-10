@@ -46,6 +46,14 @@ if ($result->num_rows > 0) {
                             'X-Mailer: PHP/' . phpversion();
 
                 mail($addressee, $subject, $message, $header);
+
+			
+		$file = '/var/log/mantis_reminds.log';
+		$dat = date('Y/m/d H:i:s', $datenow[0]);
+		$line =  $dat . " Mail to " . $row["realname"] . ", " . $row["email"] . ", open bugs:\n" . $list_of_bugs;
+		file_put_contents($file, $line, FILE_APPEND | LOCK_EX);
+
+
         }
 }
 } else {

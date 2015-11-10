@@ -1,4 +1,3 @@
-
 <?php
 # Translation for Custom Status Code: open, unassigned, postponed, funding needed, fixing
 switch( $g_active_language ) {
@@ -13,6 +12,10 @@ switch( $g_active_language ) {
 		break;
 */
 	default: # english
+		
+		$s_fixing_priority = "Fixing Priority";		
+		$g_access_levels_enum_string = '10:viewer,25:reporter,40:vereinsmitglied,55:developer,70:manager,90:administrator';
+
 		$s_status_enum_string = '10:open,15:unassigned,20:feedback,25:postponed,35:funding needed,50:assigned,60:fixing acc to prio,80:resolved,90:closed'; 
 		
 		$s_open_bug_title = 'Mark issue Open';
