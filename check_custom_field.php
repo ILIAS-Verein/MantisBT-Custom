@@ -31,11 +31,17 @@ if ($result->num_rows > 0) {
 }
 
 //Set Fixing Priority value to '0' in just created issues
-$sql = "UPDATE mantis_custom_field_string_table SET value='000' WHERE value = '" . $no_prio_string . "' AND field_id=". $field_id;
+$sql = "UPDATE mantis_custom_field_string_table SET value='000' WHERE value = '" 
+        . $no_prio_string . "' AND field_id=". $field_id;
 $conn->query($sql);
-$sql = "UPDATE mantis_custom_field_string_table SET value='000' WHERE value = '" . $no_change_string . "' AND field_id=". $field_id;
+$sql = "UPDATE mantis_custom_field_string_table SET value='000' WHERE value = '" 
+        . $no_change_string . "' AND field_id=". $field_id;
 $conn->query($sql);
-$sql = "UPDATE mantis_custom_field_string_table SET value='001' WHERE value = '" . $prio_string . "' AND field_id=". $field_id;
+$sql = "UPDATE mantis_custom_field_string_table SET value='000' WHERE value =''"
+        . " AND field_id=". $field_id;
+$conn->query($sql);
+$sql = "UPDATE mantis_custom_field_string_table SET value='001' WHERE value = '" 
+        . $prio_string . "' AND field_id=". $field_id;
 $conn->query($sql);
 
 
