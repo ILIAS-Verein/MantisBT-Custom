@@ -43,7 +43,7 @@ $conn->query($sql);
 $sql = "UPDATE mantis_custom_field_string_table SET value='001' WHERE value = '" 
         . $prio_string . "' AND field_id=". $field_id;
 $conn->query($sql);
-
+checkLastReportedBug($conn);
 
 
 
@@ -153,7 +153,7 @@ $result_2 = $conn->query($sql);
         }
         $result_2->close();
     } else {
-    echo "0 results";
+    echo "0 results in check_custom_field.php";
     }
 }
 $conn->close();
@@ -182,6 +182,43 @@ function deleteOldEntries( $conn, $history_id, $field_name, $user_id, $bug_id, $
 
         default: break;
     }
+}
+
+
+function checkLastReportedBug($conn){
+    
+    $field_name = "fixing_priority";
+    $field_id = 0;
+    
+    $sql = "SELECT * FROM mantis_custom_field_table WHERE name='".$field_name . "'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        if($row = $result->fetch_assoc()) {
+            $field_id=$row["id"];
+        }
+        $result->close();
+    }
+
+    $sql = "SELECT * FROM mantis_bug_table ORDER BY id DESC LIMIT 1";
+    $result_2 = $conn->query($sql);
+        if ($result_2->num_rows > 0) {
+            while($row = $result_2->fetch_assoc()){
+                $bug_id = $row["id"];
+                $sql = "SELECT EXISTS(SELECT * FROM mantis_custom_field_string_table WHERE field_id=".$field_id." AND bug_id = " . $bug_id . ") AS _exists_";
+                $result = $conn->query($sql);
+
+                $row = $result->fetch_assoc();
+                $_exists_ = $row["_exists_"];
+
+                if($_exists_ == 0){                    
+                    $sql = "INSERT INTO mantis_custom_field_string_table "
+                            . "(field_id, bug_id, value) VALUES("
+                            .$field_id.",".$bug_id.",'000')";
+                    $conn->query($sql);
+                }
+            }
+        }
 }
 
 ?>
