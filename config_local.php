@@ -46,8 +46,5 @@
 
 
 	$g_top_include_page = $g_absolute_path."/top_include_page.html";
-
-
-	#### 11.10.2015 Fixing Priority Function  ###
-	include("check_custom_field.php");	
+	
 ?>
