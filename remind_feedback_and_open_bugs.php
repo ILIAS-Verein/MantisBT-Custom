@@ -81,7 +81,6 @@ function sendMessage($conn, $row, $sql_21_days, $sql_14_days, $msg_begin, $msg_e
         }
 
         $addressee = $row["email"];
-        //$addressee = "anton@ilias.de";
 
         $header = 'From: Mantis Bug Tracker <noreply@ilias.de>' . "\r\n" .
             'Reply-To: info@ilias.de' . "\r\n" .
@@ -220,8 +219,5 @@ $header = 'From: Mantis Bug Tracker <noreply@ilias.de>' . "\r\n" .
     "Content-Transfer-Encoding: quoted-printable";
 
 mail($addressee, $subject, utf8_encode($message), $header);
-$addressee = "anton@ilias.de";
-mail($addressee, $subject, utf8_encode($message), $header);
-
 
 ?>
