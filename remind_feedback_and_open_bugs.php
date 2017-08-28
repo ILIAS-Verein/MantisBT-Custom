@@ -123,6 +123,7 @@ function count_bug_votings( $user_id, $conn, $start_date, $twentyonedaysago ){
         }
     }
     if( isset($votings_array)){
+        ksort($votings_array);
         foreach ($votings_array as $key => $value) {
             if( is_numeric($key)){
                 if( intval($key) != 0 ){
@@ -147,7 +148,7 @@ function compose_summary_report_msg($summary_report){
             if($vname == ""){
                 $vname = $value["email"];
             }
-            $name = "<a href='http://www.ilias.de/mantis/view_user_page.php?id=" . $key . "' target='_blank'>" . $vname . "</a>";
+            $name = "<a href='https://www.ilias.de/mantis/view_user_page.php?id=" . $key . "' target='_blank'>" . $vname . "</a>";
 
             $spaces = getSpaces(  50 - strlen($vname) );
             if($value["feedback_bugs"] > 0){
@@ -164,11 +165,26 @@ function compose_summary_report_msg($summary_report){
             if($vname == ""){
                 $vname = $value["email"];
             }
-            $name = "<a href='http://www.ilias.de/mantis/view_user_page.php?id=" . $key . "' target='_blank'>" . $vname . "</a>";
+            $name = "<a href='https://www.ilias.de/mantis/view_user_page.php?id=" . $key . "' target='_blank'>" . $vname . "</a>";
             $spaces = getSpaces(  50 - strlen($vname) );
 
             $line = "\n" . $name . $spaces . $value["feedback_bugs"] ." feedbacks required(" . $value["mean_age_feedback"] . " Tage)" . $value["bug_votings"];
             $message = $message . "\n" . $line;
+        }
+        else if( isset($value["bug_votings"]) ){ #$summary_report[$row["id"]]["bug_votings"]
+            #if( count($value["bug_votings"]) > 0 ){
+            if( $value["bug_votings"] != "" ){
+
+                $vname = $value["name"];
+                echo "" . $vname . ": " . count($value["bug_votings"]) . "\n";
+                if($vname == ""){
+                    $vname = $value["email"];
+                }
+                $name = "<a href='https://www.ilias.de/mantis/view_user_page.php?id=" . $key . "' target='_blank'>" . $vname . "</a>";
+                $spaces = getSpaces(  50 - strlen($vname) );
+                $line = "\n" . $name . $spaces . str_replace(", ", "", $value["bug_votings"]);
+                $message = $message . "\n" . $line;
+            }
         }
     }
     $message = $message . "\r\n\r\n</pre>";
@@ -219,9 +235,9 @@ if ($result->num_rows > 0) {
             $result2 = $conn->query($sql_21_days_open);
             $row_count_open = $result2->fetch_assoc();
 
+            $summary_report[$row["id"]]["email"] = $row["email"];
+            $summary_report[$row["id"]]["name"] = $row["realname"];
             if( $row_count_open["open_num"] > 0 ){
-                $summary_report[$row["id"]]["email"] = $row["email"];
-                $summary_report[$row["id"]]["name"] = $row["realname"];
                 $summary_report[$row["id"]]["open_bugs"] = $row_count_open["open_num"];
 
                 $sql_sum_mean_age = "SELECT handler_id, SUM( " . $datenow[0] . " - last_updated ) as 'total_time_passed'  FROM  mantis_bug_table WHERE handler_id='". $row["id"] . "' AND status='10' AND date_submitted>'" . $start_date . "' AND last_updated<'". $twentyonedaysago . "' AND project_id = 1 GROUP BY handler_id";
@@ -236,8 +252,6 @@ if ($result->num_rows > 0) {
             $result3 = $conn->query($sql_21_days_feedback);
             $row_count_feedback = $result3->fetch_assoc();
             if( $row_count_feedback["feedback_num"] > 0 ){
-                $summary_report[$row["id"]]["email"] = $row["email"];
-                $summary_report[$row["id"]]["name"] = $row["realname"];
                 $summary_report[$row["id"]]["feedback_bugs"] = $row_count_feedback["feedback_num"];
 
                 $sql_sum_mean_age = "SELECT reporter_id, SUM( " . $datenow[0] . " - last_updated ) as 'total_time_passed'  FROM  mantis_bug_table WHERE reporter_id='". $row["id"] . "' AND status='20' AND date_submitted>'" . $start_date . "' AND last_updated<'". $twentyonedaysago . "' AND project_id = 1 GROUP BY reporter_id";
@@ -298,4 +312,4 @@ $header = 'From: Mantis Bug Tracker <noreply@ilias.de>' . "\r\n" .
 $message = quoted_printable_encode(utf8_encode($tmp));
 mail($addressee, $subject, $message, $header);
 
-?>
+?> 
