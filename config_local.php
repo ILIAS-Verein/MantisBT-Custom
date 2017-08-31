@@ -7,13 +7,13 @@
        Please note: Everything you set here has precedence over settings defined in the config_inc.php. 
     */
 	$g_enable_sponsorship = OFF;
-	$g_my_view_boxes = array ( 'assigned' => '5',
-                            'unassigned' => '6',
+	$g_my_view_boxes = array ( 'assigned' => '6',
+                            'unassigned' => '7',
                             'reported' => '1',
-                            'resolved' => '4',
-                            'recent_mod' => '3',
-                            'monitored' => '2'
-                            );
+                            'resolved' => '5',
+                            'recent_mod' => '4',
+                            'monitored' => '3',
+                            'feedback' => '2');
 	
 	$g_access_levels_enum_string = '10:viewer,25:reporter,40:vereinsmitglied,55:developer,70:manager,90:administrator';
 
@@ -46,5 +46,6 @@
 
 
 	$g_top_include_page = $g_absolute_path."/top_include_page.html";
-	
+
+
 ?>
