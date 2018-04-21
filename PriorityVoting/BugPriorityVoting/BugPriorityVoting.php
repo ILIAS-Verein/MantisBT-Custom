@@ -15,11 +15,11 @@ class BugPriorityVotingPlugin extends MantisPlugin {
         $this->name = 'BugPriorityVoting';
         $this->description = 'A plugin that manages priority voting on bugs';
 
-        $this->version = '1.0';
-        $this->requires = array( 'MantisCore' => '1.2.0', );
+        $this->version = '2.0';
+        $this->requires = array( 'MantisCore' => '2.3.0', );
 
-        $this->author = 'Anton Arsenij';
-        $this->contact = 'a.arsenij@gmx.de';
+        $this->author = 'Anton';
+        $this->contact = 'anton@ilias.de';
         $this->url = 'www.ilias.de';
     }
 
