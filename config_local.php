@@ -6,6 +6,9 @@
 
        Please note: Everything you set here has precedence over settings defined in the config_inc.php. 
     */
+
+        $g_window_title = 'ILIAS Bug Tracker';
+
 	$g_enable_sponsorship = OFF;
 	$g_my_view_boxes = array ( 'assigned' => '6',
                             'unassigned' => '7',
