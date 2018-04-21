@@ -44,8 +44,8 @@
         $g_status_enum_workflow[CLOSED]         	='20:feedback,23:needs JF decision';
 
 
-
-	$g_top_include_page = $g_absolute_path."/top_include_page.html";
+	//only for MantisBT version < 2.0
+#	$g_top_include_page = $g_absolute_path."/top_include_page.html";
 
 
 ?>
